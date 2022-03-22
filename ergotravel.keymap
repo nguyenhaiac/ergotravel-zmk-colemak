@@ -10,8 +10,8 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define DEFAULT 0
-#define RAISE 1
-#define WINDOW 2
+#define SYMBOL 1
+#define MOVE 2
 #define BLUETOOTH 3
 
 / {
@@ -32,28 +32,28 @@
 
 		default_layer {
     bindings = <
-&kp TAB        &kp Q      &kp W      &kp F        &kp P       &kp G     &mo BLUETOOTH   &kp RBKT  &kp J     &kp L       &kp U       &kp Y      &kp SEMI       &kp BSLH
-&mo RAISE  &kp A      &kp R      &kp S        &kp T       &kp D     &kp MINUS       &kp EQUAL &kp H     &kp N       &kp E       &kp I      &kp O          &kp SQT
-&mt LSHFT LPAR &kp Z      &kp X      &kp C        &kp V       &kp B     &mo WINDOW      &kp ENTER &kp K     &kp M       &kp COMMA   &kp DOT    &kp FSLH      &mt RSHFT RPAR
-&mo BLUETOOTH  &kp LGUI   &kp LALT   &kp CAPSLOCK             &mo RAISE &kp BSPC        &kp SPC   &mo RAISE             &kp LEFT    &kp DOWN   &kp UP        &kp RIGHT
+&kp TAB        &kp Q      &kp W      &kp F        &kp P       &kp G      &mo BLUETOOTH       &kp RBKT  &kp J     &kp L       &kp U       &kp Y      &kp SEMI      &kp BSLH
+&mo MOVE       &kp A      &kp R      &kp S        &kp T       &kp D      &trans              &kp EQUAL &kp H     &kp N       &kp E       &kp I      &kp O         &kp SQT
+&mt LSHFT LPAR &kp Z      &kp X      &kp C        &kp V       &kp B      &trans              &kp ENTER &kp K     &kp M       &kp COMMA   &kp DOT    &kp FSLH      &mt RSHFT ENTER
+&mo BLUETOOTH  &kp LGUI   &kp CAPSLOCK   &kp LALT             &kp LWIN   &mo SYMBOL          &kp SPC   &kp LCTRL             &kp LEFT    &kp DOWN   &kp UP        &kp RIGHT
 >;
 		};
 
-    raise_layer {
+    symbol_layer {
     bindings = <
-&trans    &trans        &trans      &kp TILDE      &kp GRAVE      &trans    &kp C_PREV         &kp C_NEXT       &kp N6    &kp N7         &kp N8           &kp N9        &kp N0        &trans
-&trans    &kp PRCNT     &kp AMPS    &kp QMARK      &kp PLUS       &kp AT    &kp C_VOL_DN       &kp C_VOL_UP     &kp DLLR  &kp UNDER      &kp LBKT         &kp RBKT      &kp EXCL      &trans
-&sk LSHFT &kp Z         &kp X       &kp C          &kp V          &kp B     &kp C_MUTE         &none            &kp K     &kp M          &kp COMMA        &kp DOT       &kp FSLH      &mt RSHFT RET
-&trans    &trans        &trans      &tog RAISE                    &trans    &kp DEL            &kp C_PLAY_PAUSE &trans                   &trans           &trans        &trans        &trans
+&kp GRAVE    &kp PRCNT     &kp AMPS    &kp QMARK      &kp PLUS    &kp AT       &kp C_VOL_DN       &kp C_VOL_UP     &kp DLLR  &kp UNDER      &kp LBKT         &kp RBKT      &kp EXCL     &kp HASH
+&kp TILDE    &kp FSLH      &kp LPAR    &kp EQUAL      &kp N0      &kp LBRC     &kp C_VOL_DN       &kp C_VOL_UP     &kp RBRC  &kp N1         &kp STAR         &kp RPAR      &kp MINUS    &kp CARET
+&sk LSHFT    &kp N6        &kp N7      &kp N8         &kp N9      &kp PIPE     &kp C_MUTE         &none            &kp BSLH  &kp N2         &kp N3           &kp N4        &kp N5        &trans
+&trans    &trans        &trans      &tog RAISE                    &trans       &kp DEL            &kp ENTER        &trans                   &trans           &trans        &trans        &trans
 >;
     };
 
-    window_layer {
+    move_layer {
     bindings = <
-&trans &kp LA(N1) &kp LA(N2) &kp LA(N3) &trans &trans &trans              &trans        &trans    &trans    &trans    &trans    &kp LA(N0) &kp LA(BSLH)
-&trans &trans     &kp LA(S)  &kp LA(D)  &trans &trans &kp LA(MINUS)       &trans        &kp LA(H) &kp LA(J) &kp LA(K) &kp LA(L) &trans     &trans
-&trans &kp LA(Z)  &trans     &trans     &trans &trans &trans              &kp LA(ENTER) &kp LA(N) &trans    &trans    &trans    &trans     &trans
-&trans &trans     &trans     &trans            &trans &trans              &kp LA(SPC)   &trans              &trans    &trans    &trans     &trans
+&trans     &kp INS      &kp PSCRN  &kp LC(PGUP) &kp LC(PGDN) &trans    &trans              &trans   &trans    &trans    &trans    &trans     &kp LA(N0)  &kp LA(BSLH)
+&trans     &kp LALT     &kp GUI    &kp LSHFT    &kp LCTRL    &kp ESC   &kp LA(MINUS)       &trans   &kp PG_UP &trans    &kp UP    &trans     &trans      &trans
+&trans     &kp K_UNDO   &kp K_CUT  &kp K_COPY   &kp K_PASTE  &trans    &trans              &trans   &kp PG_DN &kp LEFT  &kp DOWN  &kp RIGHT  &kp BSPC    &kp DEL
+&trans     &trans       &trans     &trans       &trans       &trans                        &kp LA(SPC)         &trans             &trans     &trans      &trans     &trans
 >;
     };
 
