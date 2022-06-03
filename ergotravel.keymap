@@ -12,19 +12,18 @@
 #define DEFAULT 0
 #define SYMBOL 1
 #define MOVE 2
-#define BLUETOOTH 3
+#define FUNCTION 3
+#define BLUETOOTH 4
 
 / {
-	behaviors {
-		hm: homerow_mods {
-			compatible = "zmk,behavior-hold-tap";
-			label = "HOMEROW_MODS";
-			#binding-cells = <2>;
-			tapping-term-ms = <150>;
-			quick_tap_ms = <0>;
-			flavor = "tap-preferred";
-			bindings = <&kp>, <&kp>;
-		};
+
+        conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
   };
 
 	keymap {
@@ -35,7 +34,7 @@
 &kp TAB        &kp Q      &kp W      &kp F        &kp P       &kp G      &mo BLUETOOTH       &kp RBKT  &kp J     &kp L       &kp U       &kp Y      &kp SEMI      &kp BSLH
 &mo MOVE       &kp A      &kp R      &kp S        &kp T       &kp D      &trans              &kp EQUAL &kp H     &kp N       &kp E       &kp I      &kp O         &kp SQT
 &mt LSHFT LPAR &kp Z      &kp X      &kp C        &kp V       &kp B      &trans              &kp ENTER &kp K     &kp M       &kp COMMA   &kp DOT    &kp FSLH      &mt RSHFT ENTER
-&mo BLUETOOTH  &kp LGUI   &kp CAPSLOCK   &kp LALT             &kp LWIN   &mo SYMBOL          &kp SPC   &kp LCTRL             &kp LEFT    &kp DOWN   &kp UP        &kp RIGHT
+&mo BLUETOOTH  &kp LGUI   &kp CAPSLOCK   &kp LALT             &kp LWIN   &mo SYMBOL          &lt FUNCTION SPC    &kp LCTRL             &kp LEFT    &kp DOWN   &kp UP        &kp RIGHT
 >;
 		};
 
@@ -57,6 +56,14 @@
 >;
     };
 
+    function_layer {
+    bindings = <
+&kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &trans              &trans &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+&trans &trans &trans &trans &trans &trans &trans              &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans          &trans &trans &trans &trans &trans &trans &trans
+&trans       &trans &trans &trans        &trans &trans              &trans &trans        &trans &trans &trans &trans
+>;
+    };
     bluetooth_layer {
     bindings = <
 &bt BT_SEL 0 &trans &trans &trans &trans &trans &trans              &trans &trans &trans &trans &trans &trans &out OUT_USB
