@@ -34,7 +34,7 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
       - name: West Build (Sofle Left)
-        run: west build -s zmk/app -b bluemicro840_v1 -- -DSHIELD=ergotravel_left -DZMK_CONFIG="${GITHUB_WORKSPACE}"
+        run: west build -s zmk/app -b bluemicro840_v1 -- -DSHIELD=ergotravel_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Ergotravel DTS File
         if: ${{ always() }}
         run: cat -n build/zephyr/bluemicro840_v1.dts.pre.tmp
@@ -48,7 +48,7 @@ jobs:
           name: firmware
           path: sofle_left_bluemicro840_v1.uf2
       - name: West Build (ergotravel Right)
-        run: west build --pristine -s zmk/app -b bluemicro840_v1 -- -DSHIELD=ergotravel_right -DZMK_CONFIG="${GITHUB_WORKSPACE}"
+        run: west build --pristine -s zmk/app -b bluemicro840_v1 -- -DSHIELD=ergotravel_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
 
       - name: Ergotravel Right Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
